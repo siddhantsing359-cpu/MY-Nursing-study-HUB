@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A free collection of websites, courses and references for nursing students, from basic concepts to advanced research.">
+<title>Nursing Study Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+
+<!--
+  HOW TO EDIT THIS FILE (no coding needed)
+  1. Open this file in Notepad, VS Code or any text editor.
+  2. Your own text: search for "YOUR" to find the places to replace (channel link, name, email).
+  3. Resource list: scroll to the RESOURCES list near the bottom.
+     It is in the script section at the bottom of this file.
+     Each website is one block between { and }. Copy a block to add a site, delete a block to remove one.
+     Keep the commas and the quotation marks exactly as they are.
+  4. Save the file and open it in your browser to check it.
+  5. To put it on the internet: upload this file (keep the name index.html) to a free host such as
+     GitHub Pages, Netlify Drop or Cloudflare Pages.
+-->
+
+<style>
+/* Layout: a catalogue. One search bar and filters on top, then a ruled list of resources. */
+:root {
+  --paper: #F2F4F9;
+  --surface: #FFFFFF;
+  --ink: #14213D;
+  --muted: #52607A;
+  --line: #D5DBE8;
+  --accent: #1F5FBF;
+  --accent-ink: #FFFFFF;
+  --tint: #E3ECFB;
+  --flag: #A8184A;
+  --mark: #FFE08A;
+  --mark-ink: #14213D;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0E1424;
+    --surface: #151D33;
+    --ink: #E8ECF7;
+    --muted: #A3AEC8;
+    --line: #2A3552;
+    --accent: #7FA8F5;
+    --accent-ink: #0E1424;
+    --tint: #1D2A4A;
+    --flag: #FF8FB1;
+    --mark: #E8B93C;
+    --mark-ink: #14213D;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+a { color: var(--accent); }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1000px; margin-inline: auto; padding-inline: 16px; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hl { background: var(--mark); color: var(--mark-ink); padding: 0 0.25em; border-radius: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 20px; }
+.brand { font-family: var(--display); font-weight: 600; font-size: 1.3rem; color: var(--ink); text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 0.95rem; }
+nav a { color: var(--ink); text-decoration: none; border-bottom: 2px solid transparent; padding-block: 4px; }
+nav a:hover { border-color: var(--accent); }
+
+/* Hero + search */
+.hero { padding-block: 28px 28px; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); max-width: 16ch; }
+.lede { margin-top: 16px; color: var(--muted); font-size: 1.1rem; max-width: 58ch; }
+.search { margin-top: 28px; }
+.search label { display: block; margin-bottom: 8px; }
+.search input {
+  width: 100%;
+  font: 500 1.05rem var(--body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--tint); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip {
+  font: 500 0.92rem var(--body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* Resource list */
+.listhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding-top: 16px; border-top: 2px solid var(--ink); }
+.list { list-style: none; margin: 8px 0 0; padding: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; padding-block: 18px; border-top: 1px solid var(--line); align-items: start; }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.row > * { min-width: 0; }
+.row h3 { font-size: 1.25rem; margin-top: 2px; }
+.row h3 a { color: var(--ink); text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 2px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.2s; }
+.row h3 a:hover, .row h3 a:focus-visible { background-size: 100% 2px; }
+.row .host { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); margin-top: 2px; overflow-wrap: anywhere; }
+.row .note { margin-top: 6px; color: var(--muted); max-width: 62ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; background: var(--tint); color: var(--ink); white-space: nowrap; }
+.tag.cost { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.empty { padding: 32px 0; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* Sections below */
+section.block { border-top: 2px solid var(--ink); margin-top: 56px; padding-block: 32px 48px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px 48px; }
+.two > * { min-width: 0; }
+.two h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+.two p + p { margin-top: 12px; }
+.muted { color: var(--muted); }
+.drop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding-block: 14px; border-top: 1px solid var(--line); }
+.drop:last-of-type { border-bottom: 1px solid var(--line); }
+.drop .label { flex: 0 0 96px; }
+.drop .val { font-family: var(--mono); font-size: 0.92rem; overflow-wrap: anywhere; min-width: 0; flex: 1 1 200px; }
+footer { border-top: 2px solid var(--ink); padding-block: 24px 40px; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+@media (max-width: 560px) {
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .tags { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" id="top">Nursing Study Hub</a>
+    <nav aria-label="Main">
+      <a href="#resources">Resources</a>
+      <a href="#notes">Free notes</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Free places to learn nursing, from basics to research.</h1>
+      <p class="lede">One list of reliable websites for GNM, B.Sc. and M.Sc. Nursing students. Search by name or topic, or filter by what you need.</p>
+
+      <div class="search">
+        <label class="label" for="q">Search resources</label>
+        <input id="q" type="search" placeholder="Try: pharmacology, vital signs, syllabus, research" autocomplete="off">
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+    </div>
+
+    <div id="resources">
+      <div class="listhead">
+        <span class="label" id="count" aria-live="polite"></span>
+        <span class="label">Prices and plans change, so check each site</span>
+      </div>
+      <ul class="list" id="list"></ul>
+      <p class="empty" id="empty" hidden>No resources match that search. Try a shorter word, or choose All.</p>
+    </div>
+
+    <section class="block" id="notes">
+      <div class="two">
+        <div>
+          <h2>Free notes and practice questions</h2>
+        </div>
+        <div>
+          <p>Short notes and a few practice questions on one topic every week, sent to students for free. Join the channel to get them.</p>
+          <div style="margin-top:16px">
+            <div class="drop"><span class="label">Telegram</span><span class="val"><span class="hl">t.me/YOUR-CHANNEL</span></span></div>
+            <div class="drop"><span class="label">WhatsApp</span><span class="val"><span class="hl">YOUR WHATSAPP GROUP LINK</span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="about" style="margin-top:0">
+      <div class="two">
+        <div>
+          <h2>About this site</h2>
+        </div>
+        <div>
+          <p>Built by <span class="hl">YOUR NAME</span>, <span class="hl">YOUR QUALIFICATION</span>, to help nursing students find trustworthy study material without paying for it.</p>
+          <p class="muted">Write a few lines about yourself here, and the courses or colleges you teach in.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span class="hl">YOUR NAME</span></span>
+    <span>These links lead to other websites. Study aids only: follow your hospital's protocols in practice.</span>
+  </footer>
+</div>
+
+<script>
+/*
+  RESOURCES LIST. One block per website.
+  cat   : one of "Core concepts", "Nursing guides", "Drugs", "Research", "India"
+  level : "Basic", "Intermediate", "Advanced" or "Reference"
+  cost  : what to expect, for example "Free" or "Free + paid"
+*/
+var RESOURCES = [
+  { name: "OpenStax", url: "https://openstax.org", cat: "Core concepts", level: "Basic", cost: "Free",
+    note: "Free peer-reviewed textbooks, including Anatomy and Physiology, Microbiology and Nutrition." },
+  { name: "Khan Academy", url: "https://www.khanacademy.org", cat: "Core concepts", level: "Basic", cost: "Free",
+    note: "Simple video lessons on anatomy, physiology, biochemistry and health basics." },
+  { name: "MedlinePlus", url: "https://medlineplus.gov", cat: "Core concepts", level: "Basic", cost: "Free",
+    note: "Plain-language information on diseases, tests and medicines from the US National Library of Medicine." },
+  { name: "StatPearls on NCBI Bookshelf", url: "https://www.ncbi.nlm.nih.gov/books", cat: "Core concepts", level: "Advanced", cost: "Free",
+    note: "Detailed clinical topic reviews, useful when your textbook is not enough." },
+
+  { name: "Nurseslabs", url: "https://nurseslabs.com", cat: "Nursing guides", level: "Basic", cost: "Free",
+    note: "Study guides, care plans, mnemonics and exam-style questions." },
+  { name: "RegisteredNurseRN", url: "https://www.registerednursern.com", cat: "Nursing guides", level: "Basic", cost: "Free + paid",
+    note: "Clear notes and videos on fundamentals, pharmacology and medical-surgical nursing." },
+  { name: "Nursing.com", url: "https://www.nursing.com", cat: "Nursing guides", level: "Intermediate", cost: "Free + paid",
+    note: "Video lessons and practice questions across nursing subjects." },
+  { name: "Osmosis", url: "https://www.osmosis.org", cat: "Nursing guides", level: "Intermediate", cost: "Free + paid",
+    note: "Visual, animated explanations of physiology and disease." },
+  { name: "Geeky Medics", url: "https://geekymedics.com", cat: "Nursing guides", level: "Intermediate", cost: "Free + paid",
+    note: "Step-by-step guides to clinical skills and OSCE stations." },
+
+  { name: "Drugs.com", url: "https://www.drugs.com", cat: "Drugs", level: "Intermediate", cost: "Free",
+    note: "Drug information, side effects and an interaction checker." },
+  { name: "RxList", url: "https://www.rxlist.com", cat: "Drugs", level: "Intermediate", cost: "Free",
+    note: "Drug monographs written for quick reference." },
+  { name: "Medscape", url: "https://www.medscape.com", cat: "Drugs", level: "Advanced", cost: "Free (sign-up)",
+    note: "Drug references, disease overviews and clinical news." },
+
+  { name: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov", cat: "Research", level: "Advanced", cost: "Free",
+    note: "Search biomedical journal articles for assignments and research projects." },
+  { name: "Google Scholar", url: "https://scholar.google.com", cat: "Research", level: "Advanced", cost: "Free",
+    note: "Search scholarly articles across subjects, with citation counts." },
+  { name: "Cochrane Library", url: "https://www.cochranelibrary.com", cat: "Research", level: "Advanced", cost: "Free + paid",
+    note: "Systematic reviews that summarise the evidence on a treatment." },
+  { name: "Joanna Briggs Institute", url: "https://jbi.global", cat: "Research", level: "Advanced", cost: "Mostly paid",
+    note: "Evidence-based nursing resources and critical appraisal tools." },
+
+  { name: "Indian Nursing Council", url: "https://indiannursingcouncil.org", cat: "India", level: "Reference", cost: "Free",
+    note: "Official syllabus, regulations and notifications for nursing courses." },
+  { name: "Trained Nurses' Association of India", url: "https://tnaionline.org", cat: "India", level: "Reference", cost: "Free",
+    note: "Professional news and updates for nurses in India." },
+  { name: "SWAYAM", url: "https://swayam.gov.in", cat: "India", level: "Basic", cost: "Free (certificate fee)",
+    note: "Free online courses from Indian institutions, including teaching and communication skills." },
+  { name: "NPTEL", url: "https://nptel.ac.in", cat: "India", level: "Intermediate", cost: "Free (certificate fee)",
+    note: "Free university-level video courses, with optional paid certificate exams." },
+  { name: "Ministry of Health and Family Welfare", url: "https://mohfw.gov.in", cat: "India", level: "Reference", cost: "Free",
+    note: "National health programmes and guidelines, important for community health nursing." },
+  { name: "iGOT Karmayogi", url: "https://igotkarmayogi.gov.in", cat: "India", level: "Reference", cost: "Free (registration)",
+    note: "Government training courses for health workers and public servants." },
+  { name: "OpenWHO", url: "https://openwho.org", cat: "India", level: "Reference", cost: "Free",
+    note: "Free WHO courses on infection control, emergencies and public health." },
+  { name: "WHO", url: "https://www.who.int", cat: "India", level: "Reference", cost: "Free",
+    note: "Global health guidelines and data." },
+  { name: "ICMR", url: "https://www.icmr.gov.in", cat: "India", level: "Reference", cost: "Free",
+    note: "Indian health research and national guidelines." }
+];
+
+(function () {
+  var CATS = ["All", "Core concepts", "Nursing guides", "Drugs", "Research", "India"];
+  var state = { cat: "All", q: "" };
+  var list = document.getElementById("list");
+  var chips = document.getElementById("chips");
+  var count = document.getElementById("count");
+  var empty = document.getElementById("empty");
+  var input = document.getElementById("q");
+
+  function host(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return url; }
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+
+  function buildChips() {
+    CATS.forEach(function (c) {
+      var b = el("button", "chip", c);
+      b.type = "button";
+      b.id = "chip-" + c.toLowerCase().replace(/\s+/g, "-");
+      b.setAttribute("aria-pressed", c === state.cat ? "true" : "false");
+      b.addEventListener("click", function () {
+        state.cat = c;
+        chips.querySelectorAll(".chip").forEach(function (x) {
+          x.setAttribute("aria-pressed", x === b ? "true" : "false");
+        });
+        render();
+      });
+      chips.appendChild(b);
+    });
+  }
+
+  function matches(r) {
+    if (state.cat !== "All" && r.cat !== state.cat) return false;
+    if (!state.q) return true;
+    var hay = (r.name + " " + r.note + " " + r.cat + " " + r.level + " " + host(r.url)).toLowerCase();
+    return state.q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+  }
+
+  function render() {
+    var shown = RESOURCES.filter(matches);
+    list.innerHTML = "";
+    shown.forEach(function (r) {
+      var li = el("li", "row");
+      var left = el("div");
+      left.appendChild(el("p", "label", r.cat));
+      var h = el("h3");
+      var a = el("a", "", r.name);
+      a.href = r.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      h.appendChild(a);
+      left.appendChild(h);
+      left.appendChild(el("p", "host", host(r.url)));
+      left.appendChild(el("p", "note", r.note));
+      var tags = el("div", "tags");
+      tags.appendChild(el("span", "tag", r.level));
+      tags.appendChild(el("span", "tag cost", r.cost));
+      li.appendChild(left);
+      li.appendChild(tags);
+      list.appendChild(li);
+    });
+    count.textContent = "Showing " + shown.length + " of " + RESOURCES.length;
+    empty.hidden = shown.length !== 0;
+  }
+
+  input.addEventListener("input", function () {
+    state.q = input.value.trim().toLowerCase();
+    render();
+  });
+
+  buildChips();
+  render();
+})();
+</script>
+</body>
+</html>
